@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+body{
+  background-color: #334756;
+}
+
+.headings{
+  text-align: center;
+  margin-top: 5rem;
+  color: #fff;
+}
+.title{
+  font-size: 4.8rem;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
+.subtitle{
+  font-size: 3.6rem;
+}
+.egg{
+  height: 8rem;
+  margin: 4rem auto;
+
+  display: block;
+}
+
+.breed{
+  height: 2rem;
+}
+
+.rare{
+  height: 15rem;
+}
+
+.stats{
+  color: #fff;
+  font-size: 2rem;
+}

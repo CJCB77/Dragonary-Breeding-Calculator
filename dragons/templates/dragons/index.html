@@ -1,0 +1,216 @@
+{% load static %}
+{% load dragons_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dragonary Breeding</title>
+  <link rel="stylesheet" href="{% static 'dragons/styles/style.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="headings">
+    <h1 class="title">Sistema de breeding</h1>
+    <h2 class="subtitle">(Dragonary)</h1>
+    <img class="egg" src="{% static 'dragons/imgs/egg.png' %}">
+  </div>
+
+  <form action="{% url 'dragons:calculate' %}" method="post" class="form">
+    {% csrf_token %}
+      <div class="parent">
+        <div>
+          <img src="{% static 'dragons/imgs/parent.svg' %}" class="dragon-parent">
+        </div>
+        <h3 class="form-title">Dragon 1</h3>
+        <div>
+          <img src="{% static 'dragons/imgs/strength.png' %}" class="skill-icon">
+          <label for="strength">Strength</label>
+          <input type="text" name="strength1" class="skill" placeholder="Ej. 11...">
+        </div>
+        <div>
+          <img src="{% static 'dragons/imgs/cunning.png' %}" class="skill-icon">
+          <label for="cunning">Cunning</label>
+          <input type="text" name="cunning1" class="skill" placeholder="Ej. 14...">
+        </div>
+        <div>
+          <img src="{% static 'dragons/imgs/resistance.png' %}" class="skill-icon">
+          <label for="resistance">Resistance</label>
+          <input type="text" name="resistance1" placeholder="Ej. 18...">
+        </div>
+        <div>
+          <img src="{% static 'dragons/imgs/egg2.png' %}" class="skill-icon">
+          <label for="resistance">Eggs</label>
+          <input type="text" name="eggs1" class="eggs" placeholder="Ej. 1...">
+        </div>
+      </div>
+      <div class="parent">
+        <div>
+          <img src="{% static 'dragons/imgs/parent2.svg' %}" class="dragon-parent">
+        </div>
+        <h3 class="form-title">Dragon 2</h3>
+        <div>
+          <img src="{% static 'dragons/imgs/strength.png' %}" class="skill-icon">
+          <label for="strength">Strength</label>
+          <input type="text" name="strength2" class="skill" placeholder="Ej. 9...">
+        </div>
+        <div>
+          <img src="{% static 'dragons/imgs/cunning.png' %}" class="skill-icon">
+          <label for="cunning">Cunning</label>
+          <input type="text" name="cunning2" class="skill" placeholder="Ej. 14...">
+        </div>
+        <div>
+          <img src="{% static 'dragons/imgs/resistance.png' %}" class="skill-icon">
+          <label for="resistance">Resistance</label>
+          <input type="text" name="resistance2" placeholder="Ej. 11...">
+        </div>
+        <div>
+          <img src="{% static 'dragons/imgs/egg2.png' %}" class="skill-icon">
+          <label for="resistance">Eggs</label>
+          <input type="text" name="eggs2" class="eggs" placeholder="Ej. 0...">
+        </div>
+      </div>
+
+      <div class="error-container">
+        {% if error_message %}
+          <p class="error-message">{{error_message}}</p>
+        {% endif %}
+      </div>
+
+      <div class="btn-container">
+        <button type="submit" class="btn">Generar breeds</button>
+      </div>
+    </form>
+  
+
+  <div class="generator">
+
+    {% if dragons %}
+        <div class="generation">
+         {% for dragon in dragons %}
+         <td class="{% cycle '1' '2' '3' '4' '5' '6' as dragoncolor %}"></td>
+          <div class="title-container" id="generation{{forloop.counter0}}">
+            <h2 class="generation-title" id="title{{forloop.counter0}}">Generacion</h2>
+          </div>
+
+          <div class="dragon">
+            {% if dragon.get_total_stats < 90 %}
+              <img class="breed" src="{% static 'dragons/imgs/dragon'|addstr:dragoncolor|addstr:".svg"%}">
+            {% else %}
+              <img class="adult" src="{% static 'dragons/imgs/adult-dragon.svg' %}">
+            {% endif %}
+            <div class="stats">
+              <p class="stat-total">Rarity:</p>
+              {% if dragon.get_total_stats < 90  and dragon.get_total_stats > 49%}
+                <p class="uncommon-rarity">{{dragon.rarity|title}}</p>
+              {% elif  dragon.get_total_stats < 50 %}
+                <p class="common-rarity">{{dragon.rarity|title}}</p>
+              {% else %}
+                <p class="rare-rarity">{{dragon.rarity|title}}</p>
+              {% endif %}
+              <p class="total">Stats:</p>
+              <p class="total">{{dragon.strength}} {{dragon.cunning}} {{dragon.resistance}}</p>
+              <p class="stat-total">Total: {{dragon.get_total_stats}}</p>
+              <p class="breeding-cost">Breeding Cost: <span class="cyt">{{dragon.cost}} CYT</span></p>
+            </div>
+          </div>  
+
+          <div class="arrow" id="arrow{{forloop.counter0}}">
+            <img class="down-arrow"src="{% static 'dragons/imgs/down-arrow.svg' %}" alt="">
+          </div> 
+          {% comment %} <div class="dragon">
+            <img class="breed" src="{% static 'dragons/imgs/dragon1.svg' %}" alt="">
+            <div class="stats">
+              <p class="total">Total: 34</p>
+              <p class="total">11 14 9</p>
+            </div>
+          </div> {% endcomment %}
+          {% endfor %}
+        </div>
+        <div>
+          <h3 class="cyt-total">Total CYT: {{cyt}}</h3>
+        </div>
+        <div class="donation-btn-container">
+          <button data-modal-target="#modal" class="btn">Donaciones</button>
+        </div>
+    {% endif %}
+    {% comment %} <img class="breed" src="{% static 'dragons/imgs/dragon2.svg' %}" alt="">
+    <img class="rare" src="{% static 'dragons/imgs/adult-dragon.svg' %}" alt=""> {% endcomment %}
+  </div>
+
+  <div class="donations-container" id="modal">
+    <div class="donations">
+      <div class="donation-header">
+        <h3 class="donation-title">Direccion para donaciones</h3>
+        <button data-close-button class="close-button">&times;</button>
+      </div>
+      <hr class="line">
+      <div class="donation-body">
+        <p class="donation-text">Hola si te parecio util la app estas en la libertad de hacer una pequeña donacion, lo apreciaria mucho
+        y me motivaria a seguir creando herramientas para la comunidad!</p>
+        <div class="wallet">
+          <h3 class="wallet-text">CYT / BNB:</h3>
+          <p class="wallet-address">0xd34F9f12BAd3B5D16fFD7F341e9Cdd17468A36f1</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+  </div>
+
+
+  
+<script>
+  const openModalButtons = document.querySelectorAll('[data-modal-target]')
+  const closeModalButtons = document.querySelectorAll('[data-close-button]')
+  let dragons = document.getElementsByClassName("dragon")
+  let counter = 0;
+
+  openModalButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const modal = document.querySelector(button.dataset.modalTarget)
+      openModal(modal)
+    })
+  })
+  closeModalButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const modal = button.closest('.donations-container')
+      closeModal(modal)
+    })
+  })
+
+  for(let i=0; i < dragons.length; i++){
+    if(i % 2 == 1){
+        document.getElementById("arrow"+i).style.display = "block";
+    }
+  }
+
+  for(let i=0; i < dragons.length; i++){
+    if(i % 2 == 0){
+        counter++;
+        document.getElementById("generation"+i).style.display = "block";
+        document.getElementById("title"+i).textContent = "Generacion " + counter;
+
+    }
+  }
+
+  function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('active')
+  }
+
+  function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('active')
+  }
+
+
+</script>
+</body>
+</html>

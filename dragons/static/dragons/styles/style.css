@@ -1,0 +1,321 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+body{
+  background-color: #334756;
+}
+
+.headings{
+  text-align: center;
+  margin-top: 3rem;
+  color: #F0A500;
+}
+.title{
+  font-size: 4.8rem;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
+.subtitle{
+  font-size: 3.6rem;
+}
+.egg{
+  height: 8rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+
+  display: block;
+}
+
+.breed{
+  height: 10rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.adult{
+  height: 15rem;
+  margin-left: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.rare{
+  height: 15rem;
+}
+
+.generator{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.generation{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.title-container{
+  width: 100%;
+  text-align: center;
+  margin-top: 4rem;
+  display: none ;
+}
+.generation-title{
+  font-size: 4rem;
+  color: #fff;
+}
+
+.dragon{
+  display: inline-block;
+  text-align: center;
+  margin: 5rem 0;
+  width: 40%;
+
+}
+
+.stats{
+  color: #fff;
+  margin-top: 1rem;
+
+}
+
+.total{
+  font-size: 2.2rem;
+  margin-top: 1rem;
+
+}
+.stat-total{
+  font-size: 2rem;
+  margin-top: 1rem;
+  
+}
+
+.arrow{
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  display:none;
+
+}
+.down-arrow{
+  height: 5rem;
+}
+
+.form{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.parent{
+  width: 35%;
+  margin: 3rem 0;
+}
+
+label{
+  font-size: 2.4rem;
+  color: #fff;
+}
+
+input{
+  width: 10rem;
+  height: 2rem;
+  margin: 0.5rem;
+  border: none;
+  text-decoration: none;
+  font-size: 1.6rem;
+}
+
+.btn-container{
+  width: 100%;
+  margin: 1rem;
+}
+
+.btn{
+  width: 20rem;
+  height: 8rem;
+  border: none;
+  background-color: #F0A500;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  border-radius: 3rem;
+  margin: 1rem 0;
+  
+}
+.btn:hover{
+  background-color: rgba(0, 240, 240, 0.658);
+}
+
+.form-title {
+  color: #fff;
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.skill{
+  margin-left: 2.5rem;
+}
+
+.dragon-parent{
+  height: 9rem;
+  margin-bottom: 2rem;
+}
+
+.prueba{
+  font-size: 5rem;
+  color: #fff;
+  margin: 2rem 0;
+}
+
+.donations-container{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0);
+  transition: 200ms ease-in-out;
+}
+
+.donations-container.active {
+  transform: translate(-50%,-50%) scale(1);
+}
+
+.donations{
+  background-color: #082032;
+  width: 75rem;
+  height: 30rem;
+  text-align: center;
+  margin: 1rem;
+  border-radius: 3rem;
+}
+
+.donation-header{
+  margin: 2rem;
+  display: flex;
+  justify-content: space-between;
+
+}
+.donation-title{
+  color: #fff;
+  font-size: 3rem;
+  margin-top: 3rem;
+  width: 50%;
+}
+
+.close-button{
+  height: 5rem;
+  width: 5rem;
+  font-size: 5rem;
+  color: #fff;
+  background: none;
+  border: none;
+}
+
+.line{
+  color: #fff;
+  width: 100%;
+  height: 0.1rem;
+}
+
+.donation-text{
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+.donation-body{
+  padding: 3rem;
+}
+
+.wallet{
+  margin-top: 1.5rem;
+}
+
+.wallet-text{
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+.wallet-address{
+  color: #fff;
+  font-size: 2rem;
+  margin-top: 0.5rem;
+}
+
+.eggs{
+  margin-left: 5.8rem;
+}
+
+.common-rarity{
+  color: #fff;
+  font-size: 2.5rem;
+}
+.uncommon-rarity{
+  color: #6ECB63;
+  font-size: 2.5rem;
+}
+.rare-rarity{
+  color: #0F52BA;
+  font-size: 2.5rem;
+}
+
+.breeding-cost {
+  margin-top: 1rem;
+  color: #BD4B4B;
+  font-weight: 300;
+  font-size: 2.2rem;
+}
+
+.cyt {
+  color: #fff;
+  font-size: 2rem;
+}
+.cyt-total {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  margin-top: -1rem;
+}
+
+.donation-btn-container{
+  width: 100%;
+  text-align: center;
+}
+
+.error-message{
+  color: #fff;
+  font-size: 2rem;
+}
+.error-container{
+  width: 100%;
+}
+
+.skill-icon{
+  height: 3rem;
+  margin-right: 1rem;
+}
+
+.footer{
+  background-color: #EEEEEE;
+  height: 5rem;
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 20rem;
+}
+
+.credits{
+  font-size: 1.4rem;
+  
+}
